@@ -13,12 +13,22 @@
         <h1 class="fade-in">Appointment Confirmed!</h1>
         <p class="fade-in">Thank you for booking with <b>Elite Barber Studio</b>.</p>
         <p class="fade-in">We look forward to seeing you soon! ✂️💈</p>
-        <button class="fade-in pulse-animation" onclick="goToHome()">Return Home</button>
+        <button class="fade-in pulse-animation" onclick="goToHome();completeBooking()">Return Home</button>
     </div>
 
     <script>
         function goToHome() {
             window.location.href = "index.html";  // Redirects to landing page
+        }
+        function completeBooking() {
+            alert("Your appointment has been booked successfully!");
+
+            // Clear stored selections
+            localStorage.removeItem("selectedServices");
+            localStorage.removeItem("selectedBarber");
+
+            // Redirect to home page
+            window.location.href = "index.html"; // Change this if your home page has a different filename
         }
 
         // Optional: Auto-redirect after 5 seconds
@@ -35,6 +45,7 @@
                 }, index * 200);
             });
         });
+        
     </script>
 
 </body>
