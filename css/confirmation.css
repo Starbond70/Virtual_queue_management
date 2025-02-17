@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Confirmation Container */
+.confirmation-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    text-align: center;
+    animation: popIn 0.8s ease-out;
+}
+
+/* Success Checkmark */
+.checkmark {
+    font-size: 60px;
+    color: #ffcc00;
+    font-weight: bold;
+    margin-bottom: 15px;
+    animation: scaleIn 0.6s ease-out;
+}
+
+/* Text Styling */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ffcc00;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+/* Button */
+button {
+    margin-top: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff5733, #e67e22);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Button Hover Effect */
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #e67e22, #ffcc00);
+}
+
+/* Pulse Animation for Button */
+.pulse-animation {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(255, 87, 51, 0.6); }
+    50% { box-shadow: 0 0 20px rgba(255, 87, 51, 1); }
+    100% { box-shadow: 0 0 10px rgba(255, 87, 51, 0.6); }
+}
+
+/* Fade-in Effect */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Scale-in Animation for Checkmark */
+@keyframes scaleIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Pop-in Animation for Container */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}

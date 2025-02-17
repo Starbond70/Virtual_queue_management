@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <section class="main">
+        <h2><span id="state1">Welcome to Elite Barber Studio</span> <span id="state2">Admin Panel</span></h2>
+    <form id="login-form">
+        <label for="username">Enter Username : </label>
+        <input type="text" id="username" placeholder="Username" required class="input1"><br>
+        <input type="password" id="password" placeholder="Password" required class="input1"><br>
+        <button type="submit">Login</button>
+    </form>
+    </section>
+    
+    <div id="admin-dashboard" style="display:none;">
+        <h2>Queue Management</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Token</th>
+                    <th>Name</th>
+                    <th>Service</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="queue-table"></tbody>
+        </table>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

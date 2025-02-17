@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Services | Elite Barber Studio</title>
+  <link rel="stylesheet" href="css/services.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="fade-in">Select Your Desired Services</h1>
+    <p class="fade-in">Choose from a variety of premium grooming services</p>
+  </header>
+
+  <section class="services-container">
+    <div class="service-card fade-in" onclick="toggleService(this)">
+      <input type="checkbox" class="service-checkbox">
+      <h2>Haircut</h2>
+      <p>Precision cuts styled to your preference</p>
+    </div>
+
+    <div class="service-card fade-in" onclick="toggleService(this)">
+      <input type="checkbox" class="service-checkbox">
+      <h2>Beard Trim</h2>
+      <p>Get a clean, sharp look for your beard</p>
+    </div>
+
+    <div class="service-card fade-in" onclick="toggleService(this)">
+      <input type="checkbox" class="service-checkbox">
+      <h2>Shave</h2>
+      <p>Classic smooth shave with expert care</p>
+    </div>
+
+    <div class="service-card fade-in" onclick="toggleService(this)">
+      <input type="checkbox" class="service-checkbox">
+      <h2>Facial</h2>
+      <p>Relaxing facial treatment for glowing skin</p>
+    </div>
+  </section>
+
+  <button class="next-btn pulse-animation" onclick="goToBarberSelection()">Next: Choose Barber</button>
+
+  <script>
+    function toggleService(card) {
+      let checkbox = card.querySelector(".service-checkbox");
+      let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+      
+      checkbox.checked = !checkbox.checked;
+      card.classList.toggle("selected");
+  
+      // Small bounce effect when selecting a service
+      card.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        card.style.transform = "scale(1)";
+      }, 200);
+  
+      if (checkbox.checked) {
+        selectedServices.push(checkbox.value);
+      } else {
+        selectedServices = selectedServices.filter(service => service !== checkbox.value);
+      }
+  
+      localStorage.setItem("selectedServices", JSON.stringify(selectedServices));
+      updateNextButtonState();
+    }
+  
+    function updateNextButtonState() {
+      let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+      let nextButton = document.querySelector(".next-btn");
+      nextButton.disabled = selectedServices.length === 0;
+      nextButton.style.opacity = selectedServices.length > 0 ? "1" : "0.5";
+      nextButton.style.cursor = selectedServices.length > 0 ? "pointer" : "not-allowed";
+    }
+  
+    function goToBarberSelection() {
+      let selectedServices = JSON.parse(localStorage.getItem("selectedServices")) || [];
+      if (selectedServices.length === 0) {
+        alert("Please select at least one service before proceeding.");
+        return;
+      }
+      window.location.href = "barbers.html";
+    }
+  
+    // Ensure button is disabled on page load
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }, index * 200);
+      });
+      updateNextButtonState();
+    });
+  </script>
+  
+
+</body>
+</html>

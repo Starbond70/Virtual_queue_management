@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Your Details | Elite Barber Studio</title>
+  <link rel="stylesheet" href="css/details.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="fade-in">Enter Your Details</h1>
+    <p class="fade-in">Let’s finalize your appointment details</p>
+  </header>
+
+  <section class="details-container">
+    <form id="details-form" class="fade-in">
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" required>
+      </div>
+
+      <div class="input-group">
+        <label for="date">Preferred Date</label>
+        <input type="date" id="date" required>
+      </div>
+
+      <div class="input-group">
+        <label for="time">Preferred Time</label>
+        <input type="time" id="time" required>
+      </div>
+
+      <button type="submit" class="next-btn pulse-animation">Confirm & Book</button>
+    </form>
+  </section>
+
+  <script>
+    // Apply fade-in animation on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }, index * 200);
+      });
+    });
+
+    // Form submission handling
+    document.getElementById("details-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const barber = localStorage.getItem("selectedBarber"); 
+    if (!barber) {
+        alert("❌ Please select a barber before proceeding.");
+        return;
+    }
+
+    // Retrieve selected services (ensure it's an array)
+    let services = localStorage.getItem("selectedServices");
+    services = services ? JSON.parse(services) : [];
+    
+    if (services.length === 0) {
+        alert("❌ Please select at least one service.");
+        return;
+    }
+
+
+            const data = {
+                barber,
+                customerName: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                services,
+                date: document.getElementById("date").value,
+                time: document.getElementById("time").value
+            };
+
+            fetch("http://localhost:5000/book", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                alert(response.message);
+                window.location.href = "confirmation.html";
+            })
+            .catch(error => console.error("Error:", error));
+      window.location.href = "confirmation.html";  // Redirect after confirmation
+    });
+  </script>
+
+</body>
+</html>

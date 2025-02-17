@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Time</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Select a Time Slot</h1>
+  <div class="time-slots">
+    <button onclick="selectTime('10:00 AM')">10:00 AM</button>
+    <button onclick="selectTime('12:00 PM')">12:00 PM</button>
+    <button onclick="selectTime('2:00 PM')">2:00 PM</button>
+  </div>
+  <button onclick="nextPage('details.html')" id="next-btn" class="hidden">Next</button>
+
+  <script src="js/booking.js"></script>
+</body>
+</html>

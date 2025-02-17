@@ -1,0 +1,134 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+body {
+    background-color: black;
+    color: white;
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Hero Overlay */
+.hero-overlay {
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #e67e22;
+}
+
+h1 span {
+    color: #ffcc00;
+}
+
+/* Booking Section */
+.booking-section {
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 100vh;
+}
+
+/* Service Selection */
+.service-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.service-selection button {
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.service-selection button:hover,
+.service-selection button.selected {
+    background-color: #e67e22;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+}
+
+/* Barber Selection */
+.barber-selection {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.barber-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.barber-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.barber-card:hover,
+.barber-card.selected {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #ffcc00;
+}
+
+/* Hide Sections Initially */
+.hidden {
+    display: none;
+}
+
+/* Confirm Button */
+#confirm-btn {
+    margin-top: 40px;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#confirm-btn:hover {
+    background-color: #e67e22;
+    color: white;
+}

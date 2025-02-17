@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Barber | Elite Barber Studio</title>
+  <link rel="stylesheet" href="css/barbers.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="fade-in">Choose Your Barber</h1>
+    <p class="fade-in">Select an expert barber for your perfect look</p>
+  </header>
+
+  <section class="barbers-container">
+    <div class="barber-card fade-in" onclick="selectBarber(this)">
+      <input type="radio" name="barber" class="barber-radio">
+      <img src="img/barber1.png" alt="Barber 1">
+      <h2>Krishna Gupta</h2>
+      <p>15+ years of experience in modern haircuts</p>
+    </div>
+
+    <div class="barber-card fade-in" onclick="selectBarber(this)">
+      <input type="radio" name="barber" class="barber-radio">
+      <img src="img/barber2.png" alt="Barber 2">
+      <h2>Isha Rajput</h2>
+      <p>Specialist in fades, beard trims & styling</p>
+    </div>
+
+    <div class="barber-card fade-in" onclick="selectBarber(this)">
+      <input type="radio" name="barber" class="barber-radio">
+      <img src="img/barber3.png" alt="Barber 3">
+      <h2>Fardeen</h2>
+      <p>Trend expert for sharp, stylish cuts</p>
+    </div>
+
+    <div class="barber-card fade-in" onclick="selectBarber(this)">
+      <input type="radio" name="barber" class="barber-radio">
+      <img src="img/barber4.jpg" alt="Barber 4">
+      <h2>Karthick</h2>
+      <p>Master of classic & modern hairstyles</p>
+    </div>
+  </section>
+
+  <button class="next-btn pulse-animation" onclick="goToDetailsPage()">Next: Enter Details</button>
+
+  <script>
+    function selectBarber(card) {
+      let radio = card.querySelector(".barber-radio");
+      document.querySelectorAll(".barber-card").forEach(el => el.classList.remove("selected"));
+      
+      radio.checked = true;
+      card.classList.add("selected");
+  
+      // Small bounce effect when selecting a barber
+      card.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        card.style.transform = "scale(1)";
+      }, 200);
+  
+      localStorage.setItem("selectedBarber", card.querySelector("h2").innerText);
+      updateNextButtonState();
+    }
+  
+    function updateNextButtonState() {
+      let selectedBarber = localStorage.getItem("selectedBarber");
+      let nextButton = document.querySelector(".next-btn");
+      
+      nextButton.disabled = !selectedBarber;
+      nextButton.style.opacity = selectedBarber ? "1" : "0.5";
+      nextButton.style.cursor = selectedBarber ? "pointer" : "not-allowed";
+    }
+  
+    function goToDetailsPage() {
+      let selectedBarber = localStorage.getItem("selectedBarber");
+      if (!selectedBarber) {
+        alert("Please select a barber before proceeding.");
+        return;
+      }
+      window.location.href = "details.html";
+    }
+  
+    // Ensure button is disabled on page load
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".fade-in").forEach((el, index) => {
+        setTimeout(() => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }, index * 200);
+      });
+      updateNextButtonState();
+    });
+  </script>
+  
+
+</body>
+</html>
